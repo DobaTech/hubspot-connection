@@ -17,7 +17,13 @@
 
 class HubspotException(Exception):
     """The base HubSpot error."""
-    pass
+    def __init__(self, message=None):
+        self.message = message
+        _super = super(HubspotException, self)
+        if message is None:
+            _super.__init__()
+        else:
+            _super.__init__(message)
 
 
 class HubspotUnsupportedResponseError(HubspotException):
